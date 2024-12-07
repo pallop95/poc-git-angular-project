@@ -1,0 +1,58 @@
+1. Start an Interactive Rebase:
+
+  git rebase -i <base-commit>
+    - git rebase -i HEAD~3
+-------------------------------------------
+
+2. Mark Commits for Squashing:
+
+An editor will open, showing a list of your commits:
+pick <commit-hash> Commit message 1
+pick <commit-hash> Commit message 2
+pick <commit-hash> Commit message 3
+
+Leave the first commit as pick and change the others to squash (or just s):
+pick <commit-hash> Commit message 1
+squash <commit-hash> Commit message 2
+squash <commit-hash> Commit message 3
+-------------------------------------------
+
+3. Edit the Commit Message:
+
+After marking, Git will ask you to combine the commit messages:
+bash
+Copy code
+# This is a combination of commits.
+# The first commit's message is:
+Commit message 1
+
+# The following commits are also included:
+Commit message 2
+Commit message 3
+-------------------------------------------
+
+4. Edit the message to your desired single commit message.
+Finish the Rebase:
+
+Save and close the editor.
+Git will squash the commits into one.
+Force Push the Changes: Since the rebase rewrites history, you need to force push to update the remote branch:
+
+bash
+Copy code
+git push --force
+
+Important Notes:
+Use with Caution: Force pushing overwrites the remote branch history. Ensure no one else is working on the same branch.
+Coordinate with Team: Inform your team before rewriting shared history to avoid conflicts.
+
+--------------------------------------------------------------------------------------------------------------------------------
+One-Liner Solution for Advanced Users:
+If you want to squash all commits into one starting from the root of the branch:
+
+git reset --soft $(git rev-list --max-parents=0 HEAD) && git commit --amend && git push --force
+
+This command:
+1. Resets all changes to the initial commit.
+2. Amends all changes into one commit.
+3. Force pushes the single commit to the remote branch.
