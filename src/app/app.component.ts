@@ -8,5 +8,9 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'poc-git-angular-app';
+  // title = 'poc-git-angular-app';
+
+  loadTasks(): void {
+    // Triggered when a new task is added
+  }
 }

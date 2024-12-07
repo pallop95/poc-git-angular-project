@@ -1,0 +1,8 @@
+<div *ngFor="let task of tasks" class="task">
+  <h3>{{ task.title }} <small>({{ task.category }})</small></h3>
+  <p>{{ task.description }}</p>
+  <button (click)="toggleComplete(task.id)">
+    {{ task.isComplete ? 'Mark Incomplete' : 'Mark Complete' }}
+  </button>
+  <button (click)="deleteTask(task.id)">Delete</button>
+</div>
